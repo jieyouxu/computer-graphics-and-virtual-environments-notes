@@ -1,0 +1,1054 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Vectors - Notes on Computer Graphics and Virtual Environments</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#ff6e42">
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="preference" data-md-color-primary="deep-orange" data-md-color-accent="deep-orange">
+  
+    
+      <script>matchMedia("(prefers-color-scheme: dark)").matches&&document.body.setAttribute("data-md-color-scheme","slate")</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vectors" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-announce">
+          <div class="md-announce__inner md-grid md-typeset">
+            
+    These notes are still under heavy development!
+
+          </div>
+        </aside>
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Notes on Computer Graphics and Virtual Environments" class="md-header-nav__button md-logo" aria-label="Notes on Computer Graphics and Virtual Environments">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Notes on Computer Graphics and Virtual Environments
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Vectors
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+  
+
+<nav class="md-tabs md-tabs--active" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../.." class="md-tabs__link">
+          Home
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../introduction/" class="md-tabs__link">
+          Introduction
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../" class="md-tabs__link md-tabs__link--active">
+          Mathematics for Visual Environments
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../resources/" class="md-tabs__link">
+          Resources
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../../references/" class="md-tabs__link">
+          References
+        </a>
+      
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Notes on Computer Graphics and Virtual Environments" class="md-nav__button md-logo" aria-label="Notes on Computer Graphics and Virtual Environments">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Notes on Computer Graphics and Virtual Environments
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Home" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon"></span>
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Computer Graphics and Virtual Environments Notes" class="md-nav__link">
+      Computer Graphics and Virtual Environments Notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Introduction
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Introduction" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Introduction
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/" title="Introduction to Computer Graphics" class="md-nav__link">
+      Introduction to Computer Graphics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/modelling-virtual-environments/" title="Modelling and Virtual Environments" class="md-nav__link">
+      Modelling and Virtual Environments
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/realism-real-time/" title="Realism and Real-Time" class="md-nav__link">
+      Realism and Real-Time
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../introduction/virtual-environments/" title="Virtual Environments" class="md-nav__link">
+      Virtual Environments
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Mathematics for Visual Environments
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Mathematics for Visual Environments" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Mathematics for Visual Environments
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="Mathematics for Virtual Environments" class="md-nav__link">
+      Mathematics for Virtual Environments
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Vectors
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Vectors" class="md-nav__link md-nav__link--active">
+      Vectors
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#subspaces-of-vector-spaces" class="md-nav__link">
+    Subspaces of Vector Spaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#span" class="md-nav__link">
+    Span
+  </a>
+  
+    <nav class="md-nav" aria-label="Span">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implicit-definition" class="md-nav__link">
+    Implicit Definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effective-description" class="md-nav__link">
+    Effective Description
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spanning-set" class="md-nav__link">
+    Spanning Set
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basis" class="md-nav__link">
+    Basis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-addition" class="md-nav__link">
+    Vector Addition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-by-scalar" class="md-nav__link">
+    Scaling by Scalar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-norm" class="md-nav__link">
+    Vector Norm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-vector" class="md-nav__link">
+    Unit Vector
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inner-dot-product-of-two-vectors" class="md-nav__link">
+    Inner (Dot) Product of Two Vectors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-product" class="md-nav__link">
+    Cross Product
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../dimensions/" title="Dimensions" class="md-nav__link">
+      Dimensions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../directions-angles/" title="Directions and Angles" class="md-nav__link">
+      Directions and Angles
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Resources
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Resources" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Resources
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../resources/" title="Resources" class="md-nav__link">
+      Resources
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      References
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="References" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        References
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../references/" title="References" class="md-nav__link">
+      References
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#subspaces-of-vector-spaces" class="md-nav__link">
+    Subspaces of Vector Spaces
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#span" class="md-nav__link">
+    Span
+  </a>
+  
+    <nav class="md-nav" aria-label="Span">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implicit-definition" class="md-nav__link">
+    Implicit Definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effective-description" class="md-nav__link">
+    Effective Description
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spanning-set" class="md-nav__link">
+    Spanning Set
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basis" class="md-nav__link">
+    Basis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-addition" class="md-nav__link">
+    Vector Addition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scaling-by-scalar" class="md-nav__link">
+    Scaling by Scalar
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-norm" class="md-nav__link">
+    Vector Norm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unit-vector" class="md-nav__link">
+    Unit Vector
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inner-dot-product-of-two-vectors" class="md-nav__link">
+    Inner (Dot) Product of Two Vectors
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cross-product" class="md-nav__link">
+    Cross Product
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="vectors">Vectors<a class="headerlink" href="#vectors" title="Permanent link">&para;</a></h1>
+<h2 id="subspaces-of-vector-spaces">Subspaces of Vector Spaces<a class="headerlink" href="#subspaces-of-vector-spaces" title="Permanent link">&para;</a></h2>
+<p>A vector space <span class="arithmatex">\(V_0\)</span> is a <strong>subspace</strong> of vector space <span class="arithmatex">\(V\)</span> iff <span class="arithmatex">\(V_0 \subset V\)</span>
+and linear operations on <span class="arithmatex">\(V_0\)</span> is consistent with that of <span class="arithmatex">\(V\)</span>.</p>
+<p>A subset <span class="arithmatex">\(S\)</span> of vector space <span class="arithmatex">\(V\)</span> is a subspace of <span class="arithmatex">\(V\)</span> iff <span class="arithmatex">\(S \neq \varnothing\)</span>
+and <strong>closed under linear operations</strong>:</p>
+<ol>
+<li><span class="arithmatex">\(\vb{x}, \vb{y} \in S \implies \vb{x} + \vb{y} \in S\)</span>.</li>
+<li><span class="arithmatex">\(\forall r \in \mathbb{R} \colon \vb{x} \in S \implies r\vb{x} \in S\)</span>.</li>
+</ol>
+<p>Note that:</p>
+<ul>
+<li>Zero vector in subspace is the same as the zero vector in <span class="arithmatex">\(V\)</span>.</li>
+<li>Subtraction in subspace agrees with <span class="arithmatex">\(V\)</span>.</li>
+</ul>
+<p>If we let <span class="arithmatex">\(V\)</span> be a vector space and <span class="arithmatex">\(\vb{x}_1, \dots, \vb{x}_n \in V\)</span>, then the
+set <span class="arithmatex">\(L\)</span> of all linear combinations</p>
+<div class="arithmatex">\[
+\sum_{i=1}^{n} r_i \vb{x}_i
+\]</div>
+<p>where <span class="arithmatex">\(r_i \in \mathbb{R}\)</span> is a subspace of <span class="arithmatex">\(V\)</span>.</p>
+<h2 id="span">Span<a class="headerlink" href="#span" title="Permanent link">&para;</a></h2>
+<h3 id="implicit-definition">Implicit Definition<a class="headerlink" href="#implicit-definition" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(S\)</span> be a subset of vector space <span class="arithmatex">\(V\)</span>, then the <strong>span</strong> of set <span class="arithmatex">\(S\)</span>
+(<span class="arithmatex">\(\mathrm{span}(S)\)</span>) is the <strong>smallest subspace <span class="arithmatex">\(V\)</span> that contains <span class="arithmatex">\(S\)</span></strong>:</p>
+<ol>
+<li><span class="arithmatex">\(\mathrm{span}\)</span> is a subspace of <span class="arithmatex">\(V\)</span>.</li>
+<li>For any subspace <span class="arithmatex">\(W \subset V\)</span>,
+   <span class="arithmatex">\(S \subset W \implies \mathrm{span}(S) \subset W\)</span>.</li>
+</ol>
+<p>The span of any set <span class="arithmatex">\(S \subset V\)</span> is well defined, as the intersection of all
+subspaces of <span class="arithmatex">\(V\)</span> that contains <span class="arithmatex">\(S\)</span>.</p>
+<h3 id="effective-description">Effective Description<a class="headerlink" href="#effective-description" title="Permanent link">&para;</a></h3>
+<p>Let <span class="arithmatex">\(S\)</span> be a subset of vector space <span class="arithmatex">\(V\)</span>.</p>
+<ul>
+<li>
+<p>If <span class="arithmatex">\(S = \{ \vb{v}_1, \dots, \vb{v}_n \}\)</span> then <span class="arithmatex">\(\mathrm{S}\)</span> is the set of all
+  <strong>linear combinations</strong> where <span class="arithmatex">\(r_i \in \mathbb{R}\)</span>:</p>
+<div class="arithmatex">\[
+r_1 \vb{v}_1 + \cdots + r_n \vb{v}_n
+\]</div>
+</li>
+<li>
+<p>If <span class="arithmatex">\(S = \varnothing\)</span> then <span class="arithmatex">\(\mathrm{span}(S) = \{ \vb{0} \}\)</span>.</p>
+</li>
+</ul>
+<h2 id="spanning-set">Spanning Set<a class="headerlink" href="#spanning-set" title="Permanent link">&para;</a></h2>
+<p>A subset <span class="arithmatex">\(S\)</span> of vector space <span class="arithmatex">\(V\)</span> is a <strong>spanning set</strong> for <span class="arithmatex">\(V\)</span> iff</p>
+<div class="arithmatex">\[
+\mathrm{span}(S) = V
+\]</div>
+<h2 id="basis">Basis<a class="headerlink" href="#basis" title="Permanent link">&para;</a></h2>
+<p>A set <span class="arithmatex">\(B\)</span> of vectors in vector space <span class="arithmatex">\(V\)</span> is a <strong>basis</strong> iff every element of
+<span class="arithmatex">\(V\)</span> can be written in a unique way as a finite <strong>linear combination</strong> of
+elements of <span class="arithmatex">\(B\)</span>.</p>
+<p>A set <span class="arithmatex">\(B \subset V\)</span> is a <strong>basis</strong> iff (for some field <span class="arithmatex">\(F\)</span> such as the
+real numbers <span class="arithmatex">\(\mathrm{R}\)</span>):</p>
+<ol>
+<li>It has the <strong>linear independence property</strong>:<ul>
+<li>For every finite subset <span class="arithmatex">\(\{ v_1, \dots, v_m \}\)</span> of <span class="arithmatex">\(B\)</span>, if
+  <span class="arithmatex">\(c_1 v_1 + \cdots + c_m v_m = 0\)</span> for some <span class="arithmatex">\(c_1, \dots, c_m \in F\)</span>, then
+  <span class="arithmatex">\(c_1 = \cdots = c_m = 0\)</span>.</li>
+</ul>
+</li>
+<li>It has the <strong>spanning property</strong>:<ul>
+<li>For every vector <span class="arithmatex">\(v \in V\)</span>, one can choose <span class="arithmatex">\(a_1, \dots, a_n \in F\)</span> and
+  <span class="arithmatex">\(v_1, \dots, v_n \in B\)</span> such that <span class="arithmatex">\(v = a_1 v_1 + \cdots + a_n v_n\)</span>.</li>
+</ul>
+</li>
+</ol>
+<figure>
+    <img src="./vector.png" width="50%" />
+    <figcaption>
+        Figure 2: Vector [CGVE].
+    </figcaption>
+</figure>
+
+<p>A <strong>vector</strong> <span class="arithmatex">\(\vb{v}\)</span> is a difference of two <strong>points</strong> <span class="arithmatex">\(P_1\)</span> and <span class="arithmatex">\(P_2\)</span></p>
+<div class="arithmatex">\[
+\vb{v} = P_2 - P_1
+\]</div>
+<p>By corollary, a <strong>point</strong> can be specified as an addition of a point with a
+vector</p>
+<div class="arithmatex">\[
+P_2 = \vb{v} + P_1
+\]</div>
+<p>Note that a <strong>point</strong> <span class="arithmatex">\(P_1 = (x, y, z)\)</span> can also be converted into vector
+<span class="arithmatex">\(\overline{OP}\)</span> from the origin,</p>
+<div class="arithmatex">\[
+\overline{OP} = \begin{bmatrix}
+    x \\
+    y \\
+    z
+\end{bmatrix}
+\]</div>
+<h2 id="vector-addition">Vector Addition<a class="headerlink" href="#vector-addition" title="Permanent link">&para;</a></h2>
+<p>Two vectors <span class="arithmatex">\(\vb{u} = [x_1, y_1, z_1]^T, \vb{v} = [x_2, y_2, z_2]^T\)</span> can be
+summed provided they have matching dimensions</p>
+<div class="arithmatex">\[
+\vb{u} + \vb{v} =
+    \begin{bmatrix} x_1 \\ y_1 \\ z_1 \end{bmatrix}
+    + \begin{bmatrix} x_1 \\ y_2 \\ z_2 \end{bmatrix} \\
+    = \begin{bmatrix} x_1 + x_2 \\ y_1 + y_2 \\ z_1 + z_2 \end{bmatrix}
+\]</div>
+<p>This can be visually depicted via the parallelogram rule.</p>
+<figure>
+    <img src="./parallelogram-rule.png" width="50%" />
+    <figcaption>
+        Figure 3: Vector addition via the parallelogram rule [CGVE].
+    </figcaption>
+</figure>
+
+<h2 id="scaling-by-scalar">Scaling by Scalar<a class="headerlink" href="#scaling-by-scalar" title="Permanent link">&para;</a></h2>
+<p>Any vector <span class="arithmatex">\(\vb{v} = [x, y, z]^T\)</span> can be scaled by the scalar
+<span class="arithmatex">\(\lambda \in \mathbb{R}\)</span></p>
+<div class="arithmatex">\[
+\lambda \vb{v} = \begin{bmatrix}
+    \lambda x \\ \lambda y \\ \lambda z \end{bmatrix}
+\]</div>
+<p>The resulting vector <span class="arithmatex">\(\lambda \vb{v}\)</span> is a new vector that <em>preserves</em> the
+<strong>direction</strong>, iff <span class="arithmatex">\(\lambda &gt; 0\)</span>. The direction is flipped if <span class="arithmatex">\(\lambda &lt; 0\)</span>.</p>
+<p>The new length is computed by</p>
+<div class="arithmatex">\[
+\abs{\lambda \vb{v}} = \abs{\lambda}\abs{\vb{v}}
+\]</div>
+<p>Then, for any two vectors <span class="arithmatex">\(\vb{v}_1, \vb{v}_2\)</span> and any two real numbers
+<span class="arithmatex">\(\lambda_1, \lambda_2\)</span>, <span class="arithmatex">\(\lambda_1 \vb{v}_1 + \lambda_2 \vb{v}_2\)</span> is also a
+vector.</p>
+<h2 id="vector-norm">Vector Norm<a class="headerlink" href="#vector-norm" title="Permanent link">&para;</a></h2>
+<p>The three vectors</p>
+<div class="arithmatex">\[
+\hat{\imath} = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} \quad
+\hat{\jmath} = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} \quad
+\hat{k} =      \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}
+\]</div>
+<p>form the <strong>basis</strong> of the <span class="arithmatex">\(\mathbb{R}^3\)</span> 3D vector space, such that any point
+<span class="arithmatex">\(P(x, y, z)\)</span> can be expressed as a linear combination of
+<span class="arithmatex">\(\{ \hat{\imath}, \hat{\jmath}, \hat{k} \}\)</span>, since</p>
+<div class="arithmatex">\[
+\begin{bmatrix} x \\ y \\ z \end{bmatrix} =
+    x \hat{\imath} + y \hat{\jmath} + z \hat{k}
+\]</div>
+<p>The <span class="arithmatex">\(\ell_2\)</span>-norm <span class="arithmatex">\(\abs{\vb{v}}\)</span> (i.e. Euclidean distance) of a 3D vector
+<span class="arithmatex">\(\vb{v}\)</span> gives its length, and is defined as</p>
+<div class="arithmatex">\[
+\abs{\vb{v}} = \sqrt{x^2 + y^2 + z^2}
+\]</div>
+<p>which is the distance from the origin to point <span class="arithmatex">\((x, y, z)\)</span>.</p>
+<h2 id="unit-vector">Unit Vector<a class="headerlink" href="#unit-vector" title="Permanent link">&para;</a></h2>
+<p>A unit vector <span class="arithmatex">\(\vu{v}\)</span> has the same <strong>direction</strong> as vector <span class="arithmatex">\(\vb{v}\)</span> but ensures
+that <span class="arithmatex">\(\abs{\vu{v}} = 1\)</span>. <span class="arithmatex">\(\vu{v}\)</span> can be derived from <span class="arithmatex">\(\vb{v}\)</span> by
+<strong>normalizing</strong> <span class="arithmatex">\(\vb{v}\)</span> via</p>
+<div class="arithmatex">\[
+\vu{v} = \frac{\vb{v}}{\abs{\vb{v}}}
+\]</div>
+<h2 id="inner-dot-product-of-two-vectors">Inner (Dot) Product of Two Vectors<a class="headerlink" href="#inner-dot-product-of-two-vectors" title="Permanent link">&para;</a></h2>
+<p>Given two vectors <span class="arithmatex">\(\vb{v}_1 = [x_1, y_1, z_1], \vb{v}_2 = [x_2, y_2, z_2]\)</span> then
+their <strong>dot product</strong> <span class="arithmatex">\(\vb{v}_1 \bullet \vb{v}_2\)</span> is given by</p>
+<div class="arithmatex">\[
+\vb{v}_1 \bullet \vb{v}_2 =
+    \begin{bmatrix} x_1 \\ y_1 \\ z_1 \end{bmatrix}
+    \bullet \begin{bmatrix} x_2 \\ y_2 \\ z_2 \end{bmatrix}
+    = x_1 x_2 + y_1 y_2 + z_1 z_2
+\]</div>
+<p>If we <strong>normalize</strong> each of the vectors <span class="arithmatex">\(\vb{v}_1, \vb{v}_2\)</span> to give
+<span class="arithmatex">\(\vu{v}_1, \vu{v}_2\)</span>, then</p>
+<div class="arithmatex">\[
+\cos(\theta) = \frac{\vb{v}_1 \bullet \vb{v}_2}{\abs{\vb{v}_1} \abs{\vb{v}_2}}
+= \vu{v}_1 \bullet \vu{v}_2
+\]</div>
+<p>where <span class="arithmatex">\(\theta\)</span> is the angle between <span class="arithmatex">\(\vb{v}_1\)</span> and <span class="arithmatex">\(\vb{v}_2\)</span>.</p>
+<p>The dot product is <strong>proportional</strong> to the cosine of the angle between the two
+vectors. Since <span class="arithmatex">\(\cos(0) = 1\)</span> and <span class="arithmatex">\(\cos(\frac{\pi}{2}) = 0\)</span>, then it means:</p>
+<ul>
+<li>The dot product of a unit vector with itself is <span class="arithmatex">\(1\)</span>.</li>
+<li>Vectors that are <strong>orthogonal</strong> to each other has dot product of <span class="arithmatex">\(0\)</span>.</li>
+</ul>
+<h2 id="cross-product">Cross Product<a class="headerlink" href="#cross-product" title="Permanent link">&para;</a></h2>
+<p>Given two vectors <span class="arithmatex">\(\vb{a} = [a_1, a_2, a_3], \vb{b} = [b_1, b_2, b_3]\)</span> then
+their <strong>cross product</strong> <span class="arithmatex">\(\vb{a} \times \vb{b}\)</span> is given by</p>
+<div class="arithmatex">\[
+\begin{align}
+\vb{a} \cross \vb{b} &amp;=
+    \mqty| \vu{i} &amp; \vu{j} &amp; \vu{k} \\ a_1 &amp; a_2 &amp; a_3 \\ b_1 &amp; b_2 &amp; b_3 | \\
+    &amp;= \mqty| a_2 &amp; a_3 \\ b_2 &amp; b_3 | \vu{i}
+        - \mqty| a_1 &amp; a_3 \\ b_1 &amp; b_3 | \vu{j}
+        + \mqty| a_1 &amp; a_2 \\ b_1 &amp; b_2 | \vu{k} \\
+    &amp;= (a_2 b_3 - a_3 b_2) \vu{i} - (a_1 b_3 - a_3 b_1) \vu{j}
+        + (a_1 b_2 - a_2 b_1) \vu{k}
+\end{align}
+\]</div>
+<p>An property of this cross product is given by</p>
+<div class="arithmatex">\[
+\abs{\vb{a} \times \vb{b}} = \abs{\vb{a}} \abs{\vb{b}} \sin(\theta)
+\]</div>
+<p>where <span class="arithmatex">\(\theta\)</span> is the angle between the two vectors.</p>
+<p>Note that <span class="arithmatex">\(\vb{a} \times \vb{b}\)</span> is <strong>orthogonal</strong> to both <span class="arithmatex">\(\vb{a}\)</span> and
+<span class="arithmatex">\(\vb{b}\)</span>, and the length of <span class="arithmatex">\(\vb{a} \times \vb{b}\)</span> is the longest when
+<span class="arithmatex">\(\theta = \frac{\pi}{2}\)</span> since <span class="arithmatex">\(\sin(\frac{\pi}{2}) = 1\)</span>.</p>
+<ul>
+<li>When <span class="arithmatex">\(\vb{a}\)</span> and <span class="arithmatex">\(\vb{b}\)</span> are parallel or coincides, then their cross product
+  is <span class="arithmatex">\(\vb{0}\)</span>.</li>
+</ul>
+<figure>
+    <img src="./parallelogram-rule.png" width="50%" />
+    <figcaption>
+        Figure 4: Cross product forms a normal [CGVE].
+    </figcaption>
+</figure>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../" title="Mathematics for Virtual Environments" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Mathematics for Virtual Environments
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../dimensions/" title="Dimensions" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Dimensions
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
