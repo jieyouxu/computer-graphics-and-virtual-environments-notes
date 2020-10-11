@@ -8,6 +8,11 @@ nav:
         - Modelling and Virtual Environments: introduction/modelling-virtual-environments.md
         - Realism and Real-Time: introduction/realism-real-time.md
         - Virtual Environments: introduction/virtual-environments.md
+    - Mathematics for Visual Environments:
+        - math-for-ve/index.md
+        - Vectors: math-for-ve/vectors.md
+        - Dimensions: math-for-ve/dimensions.md
+        - Directions and Angles: math-for-ve/directions-angles.md
     - Resources:
         - resources.md
     - References:
