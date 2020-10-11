@@ -6,9 +6,9 @@ remarks and may link to other external resources, including but not limited to:
 blog posts, conference talks, journal articles, papers, code, repositories, etc.
 
 When no inline citation is specified, assume the material is adapted from
-\[CGVE\].
+[\[CGVE\]][CGVE].
 
-[Get the Computer Graphics and Virtual Environments Book:][CGVE]{: .md-button }
+[Get the Computer Graphics and Virtual Environments Book][CGVE]{: .md-button }
 
 !!! note "Citation conventions"
 
