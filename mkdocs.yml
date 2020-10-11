@@ -3,6 +3,9 @@ site_name: Notes on Computer Graphics and Virtual Environments
 nav:
     - Home:
         - index.md
+    - Introduction:
+        - index.md
+        - Modelling and Virtual Environments: introduction/modelling-virtual-environments.md
     - Resources:
         - resources.md
     - References:
