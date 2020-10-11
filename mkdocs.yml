@@ -4,7 +4,7 @@ nav:
     - Home:
         - index.md
     - Introduction:
-        - index.md
+        - introduction/index.md
         - Modelling and Virtual Environments: introduction/modelling-virtual-environments.md
     - Resources:
         - resources.md
